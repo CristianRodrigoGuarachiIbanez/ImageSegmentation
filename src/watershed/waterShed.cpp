@@ -71,7 +71,7 @@ void WaterShed::calculateMakers(bool morph){
     if(morph){
         morphologyEx(binary_img, binary_img);
     }
-    showImg("binary inbetween", binary_img);
+    // showImg("binary inbetween", binary_img);
     foreground(binary_img, sure_fg);
     cv::threshold(sure_fg, sure_fg, 0.4, 1.0, cv::THRESH_BINARY);
     background(sure_fg, sure_bg);
@@ -87,7 +87,7 @@ void WaterShed::calculateMakers(bool morph){
 
 void WaterShed::bitWise(cv::Mat mark){
 	cv::bitwise_not(mark, mark); //Convert white to black and black to white
-	showImg("MARKER", mark);
+	// showImg("MARKER", mark);
 }
 
 void WaterShed::getRandomColor(std::vector<cv::Vec3b>&colors, size_t size)
@@ -123,7 +123,6 @@ int main(){
     ws.calculateMakers(1);
     ws.waterShed();
     ws.highlightingMarkers();
-    ws.showColoredImg();
-    ws.showBinaryImg();
+    cv::Mat image = ws.segmentedImage();
     return 0;
 }

@@ -13,11 +13,15 @@ namespace watershed{
         void calculateMakers(bool morph);
         void waterShed();
         void highlightingMarkers();
-        void showColoredImg(){
-            showImg("Final Result", dst);
-            cv::waitKey(0);
+        cv::Mat segmentedImage(){
+            if(dst.empty()){
+                std::cerr << "Error\n";
+                std::cerr << "Cannot Read Segmented Image\n";
+            }else{
+                return dst;
+            }
         }
-         void showBinaryImg(){
+        void showBinaryImg(){
             showImg("binary image", bin_img);
             cv::waitKey(0);
         }
@@ -36,7 +40,7 @@ namespace watershed{
         cv::Mat shiftedFilter(){
             cv:: Mat shifted;
             cv::pyrMeanShiftFiltering(this->original_img, shifted, 21, 51);
-            showImg("shifted", shifted);
+            // showImg("shifted", shifted);
             return shifted;
         }
 
@@ -57,12 +61,12 @@ namespace watershed{
 
         void background(cv::Mat&src, cv::Mat&dst){
             getBackground(src, dst);
-            showImg("sure background", dst);
+            // showImg("sure background", dst);
         }
 
         void foreground(cv::Mat&src, cv::Mat&dst){
             getForeground(src, dst);
-            showImg("sure foreground", dst);
+            // showImg("sure foreground", dst);
         }
 
         private:
@@ -76,7 +80,7 @@ namespace watershed{
             cv::Mat mask;
             cv::inRange(src, cv::Scalar(255, 255, 255), cv::Scalar(255, 255, 255), mask);
             src.setTo(cv::Scalar(0, 0, 0), mask);
-            showImg("WB", mask);
+            // showImg("WB", mask);
         }
         void kernels(cv::Mat&src, cv::Mat&imgLaplacian, cv::Mat&imgResult);
         void findMarkers(const cv::Mat& sureBg, cv::Mat& markers, std::vector<std::vector<cv::Point>>& contours);

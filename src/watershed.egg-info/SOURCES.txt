@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/watershed/__init__.py
+src/watershed/py.typed
+src/watershed.egg-info/PKG-INFO
+src/watershed.egg-info/SOURCES.txt
+src/watershed.egg-info/dependency_links.txt
+src/watershed.egg-info/not-zip-safe
+src/watershed.egg-info/requires.txt
+src/watershed.egg-info/top_level.txt

@@ -1,0 +1,8 @@
+Cython==0.29.32
+numpy>=1.19.5
+opencv-python==4.6.0.66
+pytest>=6.0
+pytest-cov>=2.0
+mypy>=0.910
+flake8>=3.9
+tox>=3.24
